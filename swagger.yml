@@ -1,0 +1,94 @@
+openapi: 3.0.0
+info:
+  description: 'Описание необходимых методов webhook'
+  version: "1.0.0"
+  title: 'webhook для tomoru'
+  contact:
+    email: vasdmipro@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: Main
+    description: 'Основное'
+paths:
+  /call-result:
+    post:
+      tags:
+        - Main
+      summary: Сохраняет информацию о результате звонка
+      operationId: CallResult
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallResultRequest'
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/CallResultResponse'
+        '400':
+          description: Неверные параметры
+components:
+  schemas:
+    
+    CallResultRequest:
+      required:
+        - car_type
+        - body_option
+        - start_date
+        - phone
+      properties:
+        car_type:
+          type: string
+          enum:
+            - 'До 0.5т'
+            - 'До 1т'
+            - 'До 1.5т'
+            - 'До 3т'
+            - 'До 5т'
+            - 'До 10т'
+            - 'До 20т'
+          description: 'Тип автомобиля'
+        body_option:
+          type: string
+          enum:
+            - 'Борт'
+            - 'Рефрижератор'
+            - 'Изотермический кузов'
+            - 'Тент'
+            - 'Фургон'
+            - 'ЦМФ'
+          description: 'Тип кузова'
+        start_date:
+          type: string
+          description: 'Когда готовы выйти на работу'
+          example: '2023.05.10'
+        phone:
+          type: string
+          description: 'Номер телефона в международном формате'
+          example: '79998887766'
+      type: object
+      
+    CallResultResponse:
+      required:
+        - id
+        - status
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: a4855589-66ce-11e7-9f1c-e41f13c2b942
+          description: 'Уникальный идентификатор обращения у нас в базе'
+        status:
+          type: string
+          enum:
+            - success
+            - error
+          example: 'sucсess'
+      type: object
