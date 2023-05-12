@@ -1,7 +1,9 @@
 openapi: 3.0.0
+servers:
+  - url: https://uperevozkami.online:44983/tomoru/hs/webhook
 info:
   description: 'Описание необходимых методов webhook'
-  version: "1.0.0"
+  version: "1.0.1"
   title: 'webhook для tomoru'
   contact:
     email: vasdmipro@gmail.com
@@ -46,24 +48,9 @@ components:
       properties:
         car_type:
           type: string
-          enum:
-            - 'До 0.5т'
-            - 'До 1т'
-            - 'До 1.5т'
-            - 'До 3т'
-            - 'До 5т'
-            - 'До 10т'
-            - 'До 20т'
           description: 'Тип автомобиля'
         body_option:
           type: string
-          enum:
-            - 'Борт'
-            - 'Рефрижератор'
-            - 'Изотермический кузов'
-            - 'Тент'
-            - 'Фургон'
-            - 'ЦМФ'
           description: 'Тип кузова'
         start_date:
           type: string
@@ -77,7 +64,6 @@ components:
       
     CallResultResponse:
       required:
-        - id
         - status
       properties:
         id:
@@ -91,4 +77,7 @@ components:
             - success
             - error
           example: 'sucсess'
+        error_message:
+          type: string
+          description: 'Описание ошибки'
       type: object
