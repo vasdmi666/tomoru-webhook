@@ -3,7 +3,7 @@ servers:
   - url: https://uperevozkami.online:44983/tomoru/hs/webhook
 info:
   description: 'Описание необходимых методов webhook'
-  version: "1.0.1"
+  version: "1.0.2"
   title: 'webhook для tomoru'
   contact:
     email: vasdmipro@gmail.com
@@ -45,6 +45,9 @@ components:
         - body_option
         - start_date
         - phone
+        - ready_this_week
+        - ready_in_two_days
+        - final_answer
       properties:
         car_type:
           type: string
@@ -55,7 +58,19 @@ components:
         start_date:
           type: string
           description: 'Когда готовы выйти на работу'
-          example: '2023.05.10'
+          example: 'Ну на следующей неделе только'
+        ready_this_week:
+          type: string
+          description: 'Готовы выйти на этой неделе'
+          example: 'Да'
+        ready_in_two_days:
+          type: string
+          description: 'Готовы выйти в ближайшие 2 дня'
+          example: 'Да'
+        final_answer:
+          type: string
+          description: 'Финальная фраза водителя'
+          example: 'Надо подумать'
         phone:
           type: string
           description: 'Номер телефона в международном формате'
