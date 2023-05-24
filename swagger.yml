@@ -3,7 +3,7 @@ servers:
   - url: https://uperevozkami.online:44983/tomoru/hs/webhook
 info:
   description: 'Описание необходимых методов webhook'
-  version: "1.0.2"
+  version: "1.0.3"
   title: 'webhook для tomoru'
   contact:
     email: vasdmipro@gmail.com
@@ -41,13 +41,7 @@ components:
     
     CallResultRequest:
       required:
-        - car_type
-        - body_option
-        - start_date
         - phone
-        - ready_this_week
-        - ready_in_two_days
-        - final_answer
       properties:
         car_type:
           type: string
